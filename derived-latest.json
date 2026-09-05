@@ -1,0 +1,6 @@
+{
+  "schema": "globalgrid.derived-runtime-pointer.v1",
+  "generation": "202609052001",
+  "manifest": "releases/202609052001/manifest.json",
+  "manifestSha256": "a344ed826eeb29c37f2ebdefaf7699591dcdbf94320847f2d4e91a94a6c33193"
+}
