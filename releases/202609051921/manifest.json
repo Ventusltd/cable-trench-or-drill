@@ -1,0 +1,93 @@
+{
+  "schema": "globalgrid.original-runtime.v1",
+  "generation": "202609051921",
+  "createdAt": "2026-09-05T19:21:39.710417+00:00",
+  "origin": {
+    "repository": "Ventusltd/globalgrid2050",
+    "commit": "4185020ade7da01869b4ffc0ee1d2656608da716"
+  },
+  "applications": [
+    {
+      "id": "cable-geometry-visualiser",
+      "entry": "solar-bess-topology-v7/cable-geometry-visualiser/index.html"
+    }
+  ],
+  "policy": "Original runtime and required relative data bytes copied unchanged; no generated full-code reports.",
+  "rootOriginDependencies": [],
+  "externalLiteralUrls": [
+    "https://electrical.theiet.org/bs-7671-18th-edition-wiring-regulations/",
+    "https://g81.ukpowernetworks.co.uk/library/installation/cables/ecs-02-0019-installation-of-underground-cables-lv-to-132kv",
+    "https://streetworks.org.uk/resources/publications/",
+    "https://www.gov.uk/government/publications/recording-of-underground-apparatus-in-streets-code-of-practice"
+  ],
+  "externalScope": "Literal URL inventory, not exhaustive dynamic dependency closure. External libraries, styles, tiles and geocoding remain external. Root-absolute data requires the GlobalGrid origin or an explicit hosting adapter.",
+  "files": [
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/calculations.js",
+      "bytes": 9630,
+      "sha256": "403d51c198148917075b1acfffa48c2af36b3219db21543074623917c30c7914",
+      "gitBlob": "9d111dd34dbaf67d1de0c1b67c096b8352a9b3a9",
+      "role": "runtime"
+    },
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/data.js",
+      "bytes": 30624,
+      "sha256": "be8b2f72f1ae1f9f9b09aff48ef2d6947c3b733cf43967e9b0a6ebdcc8995896",
+      "gitBlob": "f1d5051ef114f1be92a8f5e89c36785439ac6951",
+      "role": "runtime"
+    },
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/export.js",
+      "bytes": 1076,
+      "sha256": "220bb34f6acd51cc80b70e402b8df54a12679887ae0c104cfaea9a15c5846ab6",
+      "gitBlob": "f77c50db7c4971dda0b6ee0fcd26575d3aff9bdc",
+      "role": "runtime"
+    },
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/index.html",
+      "bytes": 19612,
+      "sha256": "835a257de5fd4d87fd1462ce2456362d37107e7f2f55640d62b30a6355914460",
+      "gitBlob": "69be2605eff0ff39e8791816040ec7a58b2013a1",
+      "role": "runtime"
+    },
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/rendering.js",
+      "bytes": 19398,
+      "sha256": "a4f479f7861276d55eb13880efc9d5f61cb98cbc778db6c58c010a120944fba2",
+      "gitBlob": "1c80b7609e9fcea4d3bbc81b09495a1d6fab356a",
+      "role": "runtime"
+    },
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/style.css",
+      "bytes": 19800,
+      "sha256": "a1c310031f168dde279f89cf4aef8d9cec24746f8a29c900adf23f53c0d6493c",
+      "gitBlob": "9c65eae53b227a21e17f3787f7f8ba837b8a03ac",
+      "role": "runtime"
+    },
+    {
+      "path": "solar-bess-topology-v7/cable-geometry-visualiser/ui.js",
+      "bytes": 21361,
+      "sha256": "a16edf3b0b52d98197e6db9f51850b8ba351a50dc72c204dc80b22b452652443",
+      "gitBlob": "8def8e5826475a6ae554ca203e8a16d2b015beb7",
+      "role": "runtime"
+    }
+  ],
+  "crossOwnerNavigation": [
+    {
+      "path": "solar-bess-topology-v7/module-layout/index.html",
+      "repository": "Ventusltd/layout-tool",
+      "commit": "e201075e052bfc71e7fef01f1360f319808cb78f",
+      "entry": "releases/202609051858/solar-bess-topology-v7/module-layout/index.html",
+      "manifestSha256": "bb6d0a5cf4cf63d68b3d5cb02e55c27f1ccc0646135d7e39cdedbbe3da262796",
+      "rule": "Consumer composes the separately owned sibling route; this producer includes only Cable Geometry."
+    },
+    {
+      "path": "solar-bess-topology-v7/dc-ac-lv-topology-review/index.html",
+      "repository": "Ventusltd/layout-tool",
+      "commit": "e201075e052bfc71e7fef01f1360f319808cb78f",
+      "entry": "releases/202609051858/solar-bess-topology-v7/dc-ac-lv-topology-review/index.html",
+      "manifestSha256": "bb6d0a5cf4cf63d68b3d5cb02e55c27f1ccc0646135d7e39cdedbbe3da262796",
+      "rule": "Consumer composes the separately owned sibling route; this producer includes only Cable Geometry."
+    }
+  ]
+}

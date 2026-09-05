@@ -1,0 +1,10 @@
+# Cable civil works stages
+
+1. Preserve the original Cable Geometry baseline and prove byte identity, resource closure and drawing on desktop/mobile. Preserve its original window.print behavior; app-only PDF support is a separate adapter with separate proofs.
+2. Move the consumer owner pin from the historical layout-tool baseline to this producer in a new timestamp. Copy only this app's seven runtime files; retain exact cross-owner sibling navigation.
+3. Introduce separate trenching and directional-drilling assessment cartridges. Keep direct connection/distance as the first pass, always available. Manual or optional constraint-aware routing remains a second result, not a replacement. Expose both route lengths and their selected entity/attempt identity.
+4. Declare route graph and constraint inputs with revision, date and coverage. B-road preference is a configurable soft cost requested by the user, not permission to build. Watercourses, protected ground, roads and other crossings carry distinct constraints, costs and review states. Missing data is unknown coverage.
+5. Compare trenching and drilling alternatives per segment/crossing, including the assumptions, reasons for infeasibility, construction method, lengths and costs. Directional drilling requires its own entry/exit, bend/cover and crossing model; do not inherit a generic trench depth or convert an HVDC project's dimensions into a universal rule. Preserve an explicit no-result state where design inputs are missing.
+6. Test the alternative method contract with clean and infeasible cases, coverage gaps, mixed construction segments and unchanged direct baseline. Then validate visual output and source/print evidence in a separately pinned consumer build.
+
+These are planned stages. The baseline includes existing visual geometry and indicative trench/bend calculations only; it is not an implemented automated drilling engine, permission system or comprehensive 0?400 kV design authority. Its existing references retain their original voltage and project scopes. Routing research and evidence limits are maintained in Spiders codex/reload/plan-tracker/ROUTING-SECOND-PASS.md.
