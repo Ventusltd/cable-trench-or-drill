@@ -1,0 +1,49 @@
+name: Legacy Cable repair
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'releases/202609060432/**'
+      - 'src/legacy-cable/**'
+      - 'tools/*legacy*'
+      - '.github/workflows/legacy-cable.yml'
+permissions:
+  contents: read
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 9d364a218b91cf0fda1807bc9705a6616b63e62f
+          path: original-globalgrid
+          sparse-checkout: cable_geometry
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Verify original provenance and exact syntax repair
+        run: python -B tools/verify_legacy.py --source original-globalgrid
+      - name: Install pinned browser
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Exercise actual drawing, geometry and export controls
+        env:
+          TEST_OUTPUT: legacy-cable-artifacts
+        run: |
+          python -m http.server 8432 --bind 127.0.0.1 --directory releases > server.log 2>&1 &
+          node tools/legacy-cable.browser.cjs http://127.0.0.1:8432/202609060432/legacy-cable-geometry/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: legacy-cable-${{ github.sha }}
+          path: |
+            legacy-cable-artifacts/
+            server.log
+          retention-days: 7
