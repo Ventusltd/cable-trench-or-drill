@@ -1,0 +1,18 @@
+{
+  "schema": "cable-trench-or-drill.engine-pin.v1",
+  "why": "This repository pins bytes, not URLs. The route-constraint cartridge reads its mathematics from ventus-grid-engine rather than carrying a copy, so the pin records the exact commit, blob and content hash it was proven against. The cartridge verifies the fetched bytes against contentSha256 before using them and refuses if they differ, so an engine change cannot silently alter a route assessment here.",
+  "engine": {
+    "repository": "https://github.com/Ventusltd/ventus-grid-engine",
+    "commit": "9a922119dd8960ff85e922a22550f8e280c9af39",
+    "module": "engine/route-obstacles.js",
+    "gitBlob": "36ab4d0b96d35c92691a048705dde56a27679f38",
+    "contentSha256": "271bc983fbcd6b40a915ed0783a365d8ad626a84fb663342c9793e005353dc5c",
+    "servedUrl": "https://ventusltd.github.io/ventus-grid-engine/engine/route-obstacles.js",
+    "schemaExpected": "ventus-grid-engine.route-obstacles.v1",
+    "provenNote": "Served bytes verified byte-identical to the committed blob on 2026-09-06 before pinning."
+  },
+  "firstPass": {
+    "module": "engine/corridor-estimate.js",
+    "statement": "The direct straight-line distance and the calibrated corridor factor remain the first pass and are unchanged by this cartridge. Constraint-aware assessment is a SECOND result presented beside it, never a replacement, per DEVELOPMENT-PLAN.md stage 3."
+  }
+}

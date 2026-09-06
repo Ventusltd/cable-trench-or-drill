@@ -1,0 +1,67 @@
+name: Verify route-constraint cartridge and its engine pin
+# The cartridge reads its mathematics from ventus-grid-engine rather than
+# carrying a copy. Two things therefore have to be checked, and they are
+# separate failures:
+#
+#   1. The cartridge's own contract — pin verification, refusal paths, and the
+#      direct first pass surviving every one of them. Stubbed, offline, fast.
+#   2. Whether the engine bytes actually served still match the pin. That one
+#      talks to the network, so it is allowed to be reported without failing the
+#      build on a transient outage: a moved engine is a real finding, an
+#      unreachable one at 3am is not.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/route-constraints/**'
+      - 'tools/route-constraints.test.mjs'
+      - '.github/workflows/verify-route-constraints.yml'
+  pull_request:
+  workflow_dispatch:
+  # A drifted engine pin is silent until something reads it, so look once a day.
+  schedule:
+    - cron: '17 5 * * *'
+permissions:
+  contents: read
+jobs:
+  cartridge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Cartridge contract — pin verification, refusals, preserved first pass
+        run: node tools/route-constraints.test.mjs
+
+  engine-pin-drift:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    # Reports drift; does not gate the build on a network outage.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Compare the served engine module against the pinned SHA-256
+        run: |
+          set -uo pipefail
+          url=$(python3 -c "import json;print(json.load(open('src/route-constraints/engine-pin.json'))['engine']['servedUrl'])")
+          want=$(python3 -c "import json;print(json.load(open('src/route-constraints/engine-pin.json'))['engine']['contentSha256'])")
+          commit=$(python3 -c "import json;print(json.load(open('src/route-constraints/engine-pin.json'))['engine']['commit'])")
+          if ! curl --fail --silent --show-error --max-time 30 "$url" -o /tmp/engine.js; then
+            echo "::warning::the engine module could not be fetched from $url; drift not established"
+            exit 0
+          fi
+          got=$(sha256sum /tmp/engine.js | cut -d' ' -f1)
+          echo "pinned  $want  (commit $commit)"
+          echo "served  $got"
+          if [ "$want" != "$got" ]; then
+            echo "::error::the served engine module no longer matches the pin. A route assessment must not change because a dependency changed underneath it. Re-verify the module and update engine-pin.json deliberately."
+            exit 1
+          fi
+          echo "engine pin intact"
